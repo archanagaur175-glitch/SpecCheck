@@ -32,6 +32,8 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
       - name: Check .NET SDK
         run: dotnet --info
+      - name: Install Windows App SDK workload
+        run: dotnet workload install maui-windows
       - name: Validate project files
         run: |
           dotnet restore ${{ env.SOLUTION }}
@@ -47,6 +49,9 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Install Windows App SDK workload
+        run: dotnet workload install maui-windows
 
       - name: Cache NuGet packages
         uses: actions/cache@v4

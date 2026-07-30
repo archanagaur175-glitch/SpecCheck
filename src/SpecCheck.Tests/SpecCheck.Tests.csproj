@@ -16,6 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SpecCheck\SpecCheck.csproj" />
+    <ProjectReference Include="..\SpecCheck.GameData.Core\SpecCheck.GameData.Core.csproj" />
   </ItemGroup>
 </Project>

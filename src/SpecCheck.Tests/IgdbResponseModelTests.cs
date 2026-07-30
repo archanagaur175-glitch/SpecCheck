@@ -32,11 +32,11 @@ public class IgdbResponseModelTests
         Assert.Equal(85.0, game.Rating);
         Assert.NotNull(game.Cover);
         Assert.Equal("//images.igdb.com/cover.jpg", game.Cover.Url);
-        Assert.Single(game.Genres);
-        Assert.Equal("Action", game.Genres[0].Name);
-        Assert.Single(game.ReleaseDates);
-        Assert.Equal(2024, game.ReleaseDates[0].Year);
-        Assert.Single(game.Websites);
+        Assert.Single(game.Genres!);
+        Assert.Equal("Action", game.Genres![0].Name);
+        Assert.Single(game.ReleaseDates!);
+        Assert.Equal(2024, game.ReleaseDates![0].Year);
+        Assert.Single(game.Websites!);
         Assert.Equal(13, game.Websites[0].Category);
     }
 

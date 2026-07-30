@@ -74,7 +74,7 @@ public sealed partial class MainWindow : Window
         UpdateHardwareDisplay(info);
     }
 
-    private async void OnSearchTextChanged(object sender, TextChangedEventArgs e)
+    private void OnSearchTextChanged(object sender, TextChangedEventArgs e)
     {
         if (_allRecommendations.Count == 0) return;
 

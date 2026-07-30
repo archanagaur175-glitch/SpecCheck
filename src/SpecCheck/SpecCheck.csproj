@@ -11,7 +11,7 @@
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
     <WindowsPackageType>None</WindowsPackageType>
     <EnableMsixTooling>false</EnableMsixTooling>
-    <MrtCoreBuildPriority>disabled</MrtCoreBuildPriority>
+    <PkgPriGenEnabled>false</PkgPriGenEnabled>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 

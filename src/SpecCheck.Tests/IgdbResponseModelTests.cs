@@ -1,6 +1,7 @@
 using System.Net;
 using System.Text.Json;
 using SpecCheck.GameData.Core.Models;
+using SpecCheck.GameData.Core.Services;
 
 namespace SpecCheck.Tests;
 

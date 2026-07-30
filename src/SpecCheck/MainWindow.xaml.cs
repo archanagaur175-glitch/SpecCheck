@@ -1,4 +1,5 @@
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using SpecCheck.GameData.Core.Data;
 using SpecCheck.GameData.Core.Models;
 using SpecCheck.GameData.Core.Services;

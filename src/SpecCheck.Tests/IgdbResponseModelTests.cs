@@ -37,7 +37,7 @@ public class IgdbResponseModelTests
         Assert.Single(game.ReleaseDates!);
         Assert.Equal(2024, game.ReleaseDates![0].Year);
         Assert.Single(game.Websites!);
-        Assert.Equal(13, game.Websites[0].Category);
+        Assert.Equal(13, game.Websites![0].Category);
     }
 
     [Fact]

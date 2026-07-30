@@ -1,4 +1,3 @@
-using Microsoft.EntityFrameworkCore;
 using Microsoft.UI.Xaml;
 using SpecCheck.GameData.Core.Data;
 using SpecCheck.GameData.Core.Models;
@@ -18,11 +17,8 @@ public sealed partial class MainWindow : Window
         InitializeComponent();
         Title = "SpecCheck";
 
-        var options = new Microsoft.EntityFrameworkCore.DbContextOptionsBuilder<SpecCheckDbContext>()
-            .UseSqlite("Data Source=speccheck.db")
-            .Options;
-
-        _dbContext = new SpecCheckDbContext(options);
+        var factory = new SpecCheckDbContextFactory();
+        _dbContext = factory.CreateDbContext();
         _hardwareService = new HardwareDetectionService();
         _recommendationEngine = new RecommendationEngine(_dbContext, _hardwareService);
 

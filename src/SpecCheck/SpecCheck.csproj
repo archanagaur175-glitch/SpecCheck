@@ -18,4 +18,9 @@
     <PackageReference Include="Microsoft.WindowsAppSDK" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SpecCheck.GameData.Core\SpecCheck.GameData.Core.csproj" />
+    <ProjectReference Include="..\SpecCheck.Hardware\SpecCheck.Hardware.csproj" />
+  </ItemGroup>
 </Project>

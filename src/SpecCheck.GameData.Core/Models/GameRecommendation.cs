@@ -9,4 +9,6 @@ public class GameRecommendation
     public string? Resolution { get; set; }
     public bool IsPlayable => PredictedFps.HasValue && PredictedFps >= 30;
     public bool IsSmooth => PredictedFps.HasValue && PredictedFps >= 60;
+    public string PlayabilityText => IsSmooth ? "✓ Smooth" : IsPlayable ? "Playable" : "Unplayable";
+    public string PlayabilityColor => IsSmooth ? "#2ECC71" : IsPlayable ? "#F39C12" : "#E74C3C";
 }

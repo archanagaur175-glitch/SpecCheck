@@ -16,7 +16,7 @@ public class GameSyncMappingTests
             Name = "Test Game",
             Summary = "A game",
             Rating = 90.0,
-            Cover = new IgdbCover { Url = "//images.igdb.com/thumb.jpg" },
+            Cover = new IgdbCover { Url = "//images.igdb.com/igdb/image/upload/t_thumb/co1q9i.jpg" },
             Genres = [new IgdbGenre { Name = "Action" }],
             ReleaseDates = [new IgdbReleaseDate { Year = 2024 }],
             Websites = [new IgdbWebsite { Url = "https://store.steampowered.com/app/123", Category = 13 }]

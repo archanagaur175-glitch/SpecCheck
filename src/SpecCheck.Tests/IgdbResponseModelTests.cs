@@ -7,6 +7,11 @@ namespace SpecCheck.Tests;
 
 public class IgdbResponseModelTests
 {
+    private static readonly JsonSerializerOptions JsonOptions = new()
+    {
+        PropertyNameCaseInsensitive = true
+    };
+
     [Fact]
     public void Deserialize_IgdbGameResponse()
     {
@@ -23,7 +28,7 @@ public class IgdbResponseModelTests
         }
         """;
 
-        var game = JsonSerializer.Deserialize<IgdbGameResponse>(json);
+        var game = JsonSerializer.Deserialize<IgdbGameResponse>(json, JsonOptions);
 
         Assert.NotNull(game);
         Assert.Equal(123, game.Id);
@@ -45,7 +50,7 @@ public class IgdbResponseModelTests
     {
         var json = """{"id": 456, "name": "Minimal Game"}""";
 
-        var game = JsonSerializer.Deserialize<IgdbGameResponse>(json);
+        var game = JsonSerializer.Deserialize<IgdbGameResponse>(json, JsonOptions);
 
         Assert.NotNull(game);
         Assert.Equal(456, game.Id);
@@ -97,7 +102,7 @@ public class IgdbResponseModelTests
     {
         var json = """{"id": 1, "title": "Game", "genre": "RPG", "releaseYear": 2023, "igdbRating": 90.0}""";
 
-        var entry = JsonSerializer.Deserialize<ManifestEntry>(json);
+        var entry = JsonSerializer.Deserialize<ManifestEntry>(json, JsonOptions);
 
         Assert.NotNull(entry);
         Assert.Equal(1, entry.Id);

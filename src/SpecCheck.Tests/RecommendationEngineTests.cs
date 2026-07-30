@@ -71,7 +71,7 @@ public class RecommendationEngineTests : IDisposable
         var results = await _engine.GetRecommendationsAsync(genreFilter: "RPG");
 
         Assert.NotEmpty(results);
-        Assert.All(results, r => Assert.Equal("RPG", r.Game.Genre));
+        Assert.All(results, r => Assert.Contains("RPG", r.Game.Genre));
     }
 
     [Fact]

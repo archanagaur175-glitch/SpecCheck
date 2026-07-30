@@ -1,0 +1,26 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.dsym
+*.log
+*.tmp
+
+## VS
+.vs/
+*.csproj.user
+
+## IDE
+.idea/
+*.swp
+*.swo
+
+## Build output
+publish/
+artifacts/
+
+## OS
+Thumbs.db
+.DS_Store

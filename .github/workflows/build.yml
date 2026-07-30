@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master, develop]
+    paths-ignore: ['docs/**', '*.md']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DOTNET_VERSION: '8.0.x'
+  SOLUTION: src/SpecCheck.sln
+
+jobs:
+  validate:
+    name: Pre-flight validation
+    runs-on: windows-2022
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+      - name: Check .NET SDK
+        run: dotnet --info
+      - name: Validate project files
+        run: |
+          dotnet restore ${{ env.SOLUTION }}
+          dotnet build ${{ env.SOLUTION }} --no-restore --nologo
+
+  build:
+    name: Build + Test + Publish
+    needs: validate
+    runs-on: windows-2022
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json', '**/Directory.Packages.props') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: Restore dependencies
+        uses: nick-fields/retry@v3
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          retry_wait_seconds: 30
+          command: dotnet restore ${{ env.SOLUTION }}
+
+      - name: Build
+        run: dotnet build ${{ env.SOLUTION }} --no-restore -c Release -warnaserror
+
+      - name: Run unit tests
+        run: dotnet test ${{ env.SOLUTION }} --no-build -c Release --logger trx
+
+      - name: Publish self-contained
+        run: dotnet publish src/SpecCheck/SpecCheck.csproj -c Release -r win-x64 --self-contained true -o publish/portable
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: speccheck-portable-${{ github.sha }}
+          path: publish/portable/
+          retention-days: 7

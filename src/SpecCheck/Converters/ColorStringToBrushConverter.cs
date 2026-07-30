@@ -1,5 +1,6 @@
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Media;
+using Windows.UI;
 
 namespace SpecCheck.Converters;
 
@@ -18,7 +19,7 @@ public class ColorStringToBrushConverter : IValueConverter
                 return new SolidColorBrush(Windows.UI.Color.FromArgb(255, r, g, b));
             }
         }
-        return new SolidColorBrush(Windows.UI.Colors.Gray);
+        return new SolidColorBrush(Windows.UI.Color.FromArgb(255, 128, 128, 128));
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, string language)

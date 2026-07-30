@@ -1,3 +1,5 @@
+using Xunit;
+
 namespace SpecCheck.Tests;
 
 public class ShellTests

@@ -16,6 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SpecCheck.GameData.Core\SpecCheck.GameData.Core.csproj" />
   </ItemGroup>
 </Project>
